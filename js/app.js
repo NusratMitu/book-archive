@@ -1,4 +1,5 @@
 document.getElementById('error-msg').style.display = 'none';
+// load data
 const loadSearchResult = () => {
     const searchText = document.getElementById('search-field').value;
     document.getElementById('search-field').value = '';
@@ -18,12 +19,14 @@ const loadSearchResult = () => {
       }) 
     }
 }
+// error msg
 const displayError = () =>{
   document.getElementById('error-msg').style.display = 'block';
   containerDisplayNone();
   toggleSpinner('none');
 
 }
+// spinner while loading data
 const toggleSpinner = displayStyle => {
   document.getElementById('spinner').style.display = displayStyle;
 }
@@ -31,7 +34,7 @@ const containerDisplayNone =() =>{
   document.getElementById('books-number').textContent = '';
   document.getElementById('books-Container').textContent = '';
 }
-
+// display searched data
 const displaySearchResult = books => {
     if( (books.numFound) === 0 ){
       document.getElementById('books-number').innerHTML= `
