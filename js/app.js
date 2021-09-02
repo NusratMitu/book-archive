@@ -4,8 +4,7 @@ const loadSearchResult = () => {
     const searchText = document.getElementById('search-field').value;
     document.getElementById('search-field').value = '';
     toggleSpinner('block');
-    document.getElementById('books-number').textContent = '';
-    document.getElementById('books-Container').textContent = '';
+    containerDisplayStyle();
     document.getElementById('error-msg').style.display = 'none';
     const url = `https://openlibrary.org/search.json?q=${searchText}`;
     if(searchText == ''){
@@ -22,15 +21,17 @@ const loadSearchResult = () => {
 }
 const displayError = () =>{
   document.getElementById('error-msg').style.display = 'block';
-  document.getElementById('books-number').textContent = '';
-  document.getElementById('books-Container').textContent = '';
+  containerDisplayStyle();
   toggleSpinner('none');
 
 }
 const toggleSpinner = displayStyle => {
   document.getElementById('spinner').style.display = displayStyle;
 }
-
+const containerDisplayStyle =() =>{
+  document.getElementById('books-number').textContent = '';
+  document.getElementById('books-Container').textContent = '';
+}
 
 const displaySearchResult = books => {
     // console.log(books); 
@@ -55,7 +56,7 @@ const displaySearchResult = books => {
         div.innerHTML = `
         <div class="card h-100">
         <img src="https://covers.openlibrary.org/b/id/${book.cover_i ? book.cover_i: ''}-M.jpg"     
-        style="width:250px; height:250px;" class="card-img-top" alt="...">
+        style="width:100%; height:250px;" class="card-img-top" alt="...">
         <div class="card-body">
         <h5 class="card-title fw-bold">${book.title}</h5>
          <p class="card-text ">by<span class="text-success"> ${book.author_name ? book.author_name: 'unknown autor'}</span></p>
